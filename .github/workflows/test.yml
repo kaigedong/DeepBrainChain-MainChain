@@ -25,17 +25,14 @@ jobs:
 
       - uses: actions/checkout@v2
 
-      - name: Run parse price url tests
-        run: cargo test -p dbc-price-ocw
+      - name: Run ${{ matrix.package }} tests
+        run: cargo test -p ${{ matrix.package }}
 
-      - name: Run machine online tests
-        run: cargo test -p online-committee
-
-      - name: Run rent machine tests
-        run: cargo test -p rent-machine
-
-      - name: Run maintain machine tests
-        run: cargo test -p maintain-committee
-
-      - name: Run committee tests
-        run: cargo test -p committee
+    strategy:
+      matrix:
+        package:
+          - dbc-price-ocw
+          - online-committee
+          - rent-machine
+          - maintain-committee
+          - committee
